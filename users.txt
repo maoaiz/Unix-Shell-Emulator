@@ -1,0 +1,3 @@
+admin admin
+user user
+maoaiz 123456
