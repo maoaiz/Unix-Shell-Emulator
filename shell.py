@@ -2,39 +2,48 @@
 import getpass
 
 def get_user(u, p):
-    print "Logueando a", u, "..."
+    """Buscar en el archivo"""
     return True
 
 def get_command(c):
+    """Buscar en el archivo"""
     return "este comando no hace nada"
 
 def init_shell(u):
-    command = raw_input("{user}@shell-emulator ~ $ ".format(user=u))
-    info = get_command(command)
+    command = raw_input("{user}@shell-emulator:~$ ".format(user=u))
     if command == "exit":
-        exit()
-    else:
-        print info
-        init_shell(u)
+        return command
+    info = get_command(command)
+    print info
+    init_shell(u)
 
 
 def login():
-    print "\nLogin:"
-    username = raw_input("no-user@shell-emulator ~ $ ")
-    password = getpass.getpass("password for {user} ~ $".format(user=username))
-
+    username = raw_input("\nLogin:$ ")
+    if username == "exit":
+        return username
+    password = getpass.getpass("Password for {user}:~$ ".format(user=username))
     if get_user(username, password):
-        print "Bienvenido", username, "\n"
-        init_shell(username)
+        return username
     else:
-        print "Invalid password for", username
-        login()
+        return False
 
 def main():
-    print "Bienvendo a ShellEmulator\n"
-    login()
+    print "Welcome to ShellEmulator by Mauricio Aizaga\n@MaoAiz"
+    while True:
+        user = login()
+        if user:
+            if user == "exit":
+                print "The program has finished correctly, see you later.\n\nVisit us at http://mauricioaizaga.com\n"
+                break      
+            else:
+                print "Welcome", user, "\n"
+                init_shell(user)
+        else:
+            print "Invalid password for", user, "\n"
+    exit()
+
 
 
 
 main()
-raw_input()
