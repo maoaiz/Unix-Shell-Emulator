@@ -20,11 +20,13 @@ def get_user(u, p):
 
 
 def login():
-    username = raw_input("\nLogin:$ ")
-    if username == "exit":
-        return username
-    password = getpass.getpass("Password for {user}:~$ ".format(user=username))
-    if get_user(username, password):
-        return username
+    data_input = raw_input("\nLogin:$ ")
+    if data_input == "exit" or data_input == "help":
+        return data_input
     else:
-        return False
+        username = data_input
+        password = getpass.getpass("Password for {user}:~$ ".format(user=username))
+        if get_user(username, password):
+            return username
+        else:
+            return False
