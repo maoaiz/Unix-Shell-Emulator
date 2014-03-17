@@ -14,7 +14,6 @@ password: guest"""
 def main():
     print "Welcome to ShellEmulator by Mauricio Aizaga\n@MaoAiz"
     while True:
-        init_shell("admin")
         user = login()
         if user:
             if user == "exit":
